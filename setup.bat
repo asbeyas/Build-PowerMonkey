@@ -21,7 +21,7 @@ echo BUILD_RULE_CONF = Conf/build_rule.txt >> edk2/Conf/target.txt
 
 
 REM Download Python
-curl https://www.python.org/ftp/python/3.10.0/python-3.10.0-embed-amd64.zip --output python.zip
+curl https://www.python.org/ftp/python/3.10.0/python-3.10.0-embed-amd64.zip --output python.zip --ssl-no-revoke
 mkdir python
 tar -xf python.zip -C python
 echo Lib/site-packages> python\python310._pth
@@ -29,12 +29,12 @@ echo python310.zip>> python\python310._pth
 echo .>> python\python310._pth
 echo import site>> python\python310._pth
 cd python
-curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py --ssl-no-revoke
 python get-pip.py
 cd ..
 
 REM Download NASM
-curl https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/win64/nasm-2.15.05-win64.zip --output nasm.zip
+curl https://www.nasm.us/pub/nasm/releasebuilds/2.15.05/win64/nasm-2.15.05-win64.zip --output nasm.zip --ssl-no-revoke
 mkdir nasm
 tar -xf nasm.zip --strip-components=1 -C %cd%\nasm
 
@@ -43,7 +43,7 @@ mkdir EFI
 cd EFI
 mkdir Boot
 cd Boot
-curl -L https://github.com/tianocore/edk2/raw/UDK2018/ShellBinPkg/UefiShell/X64/Shell.efi --output shellx64.efi
+curl -L https://github.com/tianocore/edk2/raw/UDK2018/ShellBinPkg/UefiShell/X64/Shell.efi --output shellx64.efi --ssl-no-revoke
 copy ..\..\startup.nsh .
 cd ..
 cd ..
